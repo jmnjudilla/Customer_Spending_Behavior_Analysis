@@ -1,0 +1,47 @@
+select * from `final-data`
+
+--TOP 10 SPENDERS
+SELECT DISTINCT(cust_name) as TOP_10_SPENDER, 
+MAX(amount) as amount
+FROM `final-data`
+GROUP BY 1
+ORDER BY 2
+LIMIT 10;
+
+--AVG SPEND PER CUSTOMER
+SELECT DISTINCT(cust_name),
+AVG(amount) as avg_spend
+FROM `final-data`
+GROUP BY 1
+ORDER BY 1;
+
+--TOTAL SPEND PER CUSTOMER
+SELECT DISTINCT(cust_name),
+SUM(amount) as total_spend
+FROM `final-data`
+GROUP BY 1
+ORDER BY 1;
+
+--AVERAGE TRANSACTION VALUE
+SELECT
+AVG(amount),
+cust_name
+FROM `final-data`
+GROUP BY 2
+ORDER BY 2;
+
+--PURCHASE FREQUENCY
+SELECT
+cust_name,
+SUM(orders)
+FROM`final-data`
+GROUP BY 1
+ORDER BY 1;
+
+--TOP CATEGORIES PER CUSTOMER
+SELECT
+product_category,
+COUNT(DISTINCT cust_name) as top_categories_per_customer
+FROM `final-data`
+GROUP BY product_category
+ORDER BY 2 DESC;
